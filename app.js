@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 const session = require('express-session')
 // const adminschema = require('./schema/adminschema')
 const userschema = require('./schema/userschema')
+const balanceSchema = require('./schema/balanceSchema')
 
 const adminkey = process.env.ADMINKEY
 const secretkey = process.env.SECRETKEY
@@ -40,11 +41,34 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', function(req,res){ 
-    res.render('index')
+app.get('/', protectRoute, async function(req,res){ 
+    try{
+      const auser = req.user.user.email
+      const theuser = await userschema.findOne({email: auser})
+      const theuser1 = await balanceSchema.findOne({email: auser})
+      res.render('index', {user: theuser, user1: theuser1})
+  } catch(err){
+      console.log(err)
+  }
 })
 
-const port = process.env.PORT || 5000
+function protectRoute(req, res, next){
+    const token = req.cookies.logintoken
+    try{
+        const user = jwt.verify(token, secretkey)
+  
+        req.user = user
+        // console.log(req.user)
+        next()
+    }
+    catch(err){
+        res.clearCookie('logintoken')
+        req.flash('danger', 'Session Expired, Please Sign In')
+        res.redirect('https://alpeada.com/dashboard')
+    }
+  }
+
+const port = process.env.PORT || 3000
 
 app.listen(port, ()=>{
     console.log(`App started on port ${port}`)

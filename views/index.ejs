@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard -Alpeada</title>
+    <title>Dashboard - Alpeada</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
     
     <link rel="stylesheet" href="/assets/output.css">
@@ -80,9 +80,9 @@
                         <div>
                             <div class="flex space-x-2 items-center  ">
                                 <span><i class="ri-account-circle-line"></i></span>
-                                <h2>Salwa Williyams</h2>
+                                <h2><%= user1.name %></h2>
                             </div>
-                            <h2 class="text-xs">salwa.williyams@gmail.com</h2>
+                            <h2 class="text-xs"><%= user1.email %></h2>
                         </div>
                         
 
@@ -154,19 +154,19 @@
                         <table class="w-[100%]">  
                             <tr>
                                 <th class="text-left font-medium text-base">Profit</th>
-                                <td id="total-profit " class="text-right font-semibold text-base tracking-wide">$0.00</td>   
+                                <td id="total-profit " class="text-right font-semibold text-base tracking-wide">$<%= user1.profit %>.00</td>   
                             </tr>
                             <tr>
                                 <th class="text-left font-medium text-base ">Deposit</th>
-                                <td class="text-right font-semibold text-base tracking-wide">$676.80</td>   
+                                <td class="text-right font-semibold text-base tracking-wide">$<%= user1.deposit %>.00</td>   
                             </tr>
                             <tr>
                                 <th class=" text-left font-medium text-base">Withdrawal</th>
-                                <td class="text-right font-semibold text-base tracking-wide">$0.00</td>   
+                                <td class="text-right font-semibold text-base tracking-wide">$<%= user1.withdrawal %>.00</td>   
                             </tr>
                             <tr>
                                 <th class=" text-left font-medium text-base">Balance</th>
-                                <td id="account-balance" class="text-right font-semibold text-base tracking-wide">$986.66</td>   
+                                <td id="account-balance" class="text-right font-semibold text-base tracking-wide">$<%= user1.balance %>.00</td>   
                             </tr>           
                         </table>
                 
@@ -221,13 +221,13 @@
                             <div class="pl-3">
                                 <div class="space-y-[0.5px]">
                                     <div class="uppercase tracking-tight  font-light text-base">
-                                        <h1>Salwa Williyams</h1>
+                                        <h1><%= user1.name %></h1>
                                     </div>
                                     <div class="font-medium text-sm tracking-wide text-gray-500">
-                                        <h1>salwa.williyams@gmail.com</h1>
+                                        <h1><%= user1.email %></h1>
                                     </div>
                                     <div class="font-medium text-sm tracking-tight text-gray-500">
-                                        <h1>00447417477919</h1>
+                                        <h1><%= user.number %></h1>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
                     </div>
                     <div class="px-[1em] py-3 border-b-[0.3px] border-b-green-300 ">
                         <div>
-                            <h1 id="account-balanc " class="font-medium text-2xl">200.33 USD</h1>
+                            <h1 id="account-balanc " class="font-medium text-2xl">$<%= user1.balance %>.00</h1>
                         </div>
                     </div>
                     <div class="px-[1em] py-[3em] flex justify-start">
@@ -331,15 +331,15 @@
                                                             <ul class="space-y-6">
                                                                 <li class="space-y-1">
                                                                     <h1 class="font-semibold text-lg tracking-tight text-center ">Edit Name</h1>
-                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base">Salwa Williyams</h2>
+                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base"><%= user1.name %></h2>
                                                                 </li>
                                                                  <li class="space-y-1">
                                                                     <h1 class="font-semibold text-lg tracking-tight text-center ">Edit Email</h1>
-                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base">Salwa.williyams@gmail.com</h2>
+                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base"><%= user1.email %></h2>
                                                                 </li>
                                                                 <li class="space-y-1">
                                                                     <h1 class="font-semibold text-lg tracking-tight text-center ">Edit Phone Number</h1>
-                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base">S7546834740338</h2>
+                                                                    <h2 id="editableProfile" contenteditable="true" class="font-light text-gray-600 tracking-normal text-center text-base"><%= user.number %></h2>
                                                                 </li>
                                                                  <li class="space-y-1">
                                                                     <h1 class="font-semibold text-lg tracking-tight text-center ">Edit Password</h1>
