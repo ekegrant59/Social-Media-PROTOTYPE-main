@@ -64,7 +64,7 @@ function protectRoute(req, res, next){
     catch(err){
         res.clearCookie('logintoken')
         req.flash('danger', 'Session Expired, Please Sign In')
-        res.redirect('https://alpeada.com/dashboard')
+        res.redirect('https://alpeada.com/signup')
     }
   }
 
