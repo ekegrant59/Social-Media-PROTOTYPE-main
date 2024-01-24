@@ -9,6 +9,7 @@ const session = require('express-session')
 // const adminschema = require('./schema/adminschema')
 const userschema = require('./schema/userschema')
 const balanceSchema = require('./schema/balanceSchema')
+// const fetch = require('node-fetch')
 
 const adminkey = process.env.ADMINKEY
 const secretkey = process.env.SECRETKEY
@@ -51,6 +52,7 @@ app.get('/', protectRoute, async function(req,res){
       console.log(err)
   }
 })
+
 
 function protectRoute(req, res, next){
     const token = req.cookies.logintoken
