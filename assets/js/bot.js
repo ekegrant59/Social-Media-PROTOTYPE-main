@@ -191,7 +191,7 @@ function generateProfitLossValue() {
 
             const row1 = document.createElement('tr');
             const btcLabel = document.createElement('th');
-            btcLabel.className = 'text-left ';
+            btcLabel.className = 'text-left text-gray-700 ';
             btcLabel.textContent = 'BTC buy';
             const datetimeCell = document.createElement('td');
             datetimeCell.className = 'text-right font-light text-xs';
@@ -201,7 +201,8 @@ function generateProfitLossValue() {
 
             const row2 = document.createElement('tr');
             const btcPriceCell = document.createElement('th');
-            btcPriceCell.className = 'text-left font-semibold text-xs';
+            btcPriceCell.className =
+              'text-left font-semibold text-xs text-gray-700';
             btcPriceCell.textContent = btcPrice.toFixed(2);
             const amountCell = document.createElement('td');
             amountCell.className = 'text-right font-bold text-base tracking-wide text-[#93c5fd]';
@@ -225,7 +226,7 @@ function generateProfitLossValue() {
 
         const row3 = document.createElement('tr');
         const btcLabel1 = document.createElement('th');
-        btcLabel1.className = 'text-left ';
+        btcLabel1.className = 'text-left text-gray-700 ';
         btcLabel1.textContent = 'BTC sell';
         const datetimeCell1 = document.createElement('td');
         datetimeCell1.className = 'text-right font-light text-xs';
@@ -238,7 +239,7 @@ function generateProfitLossValue() {
         btcPriceCell1.className = 'text-left font-semibold text-xs';
         btcPriceCell1.textContent = btcPrice.toFixed(2);
         const amountCell1 = document.createElement('td');
-        amountCell1.className = 'text-right font-bold text-base tracking-wide text-[#93c5fd]';
+        amountCell1.className = 'text-right font-bold text-base tracking-wide text-blue-600';
         amountCell1.textContent = `$${amount.toFixed(2)}`;
         row4.appendChild(btcPriceCell1);
         row4.appendChild(amountCell1);
@@ -259,7 +260,7 @@ function generateProfitLossValue() {
 
             const row5 = document.createElement('tr');
             const btcLabel2 = document.createElement('th');
-            btcLabel2.className = 'text-left ';
+            btcLabel2.className = 'text-left text-gray-700 ';
             const buyOrSell = Math.random() < 0.5;
             btcLabel2.textContent = buyOrSell ? 'BTC buy' : 'BTC sell';
 
@@ -276,8 +277,8 @@ function generateProfitLossValue() {
             btcPriceCell2.textContent = btcPrice.toFixed(2);
             const amountCell2 = document.createElement('td');
             amountCell2.className = buyOrSell
-              ? 'text-right font-bold text-base tracking-wide text-[#93c5fd]'
-              : 'text-right text-red-500 font-bold text-base tracking-wide ';
+              ? 'text-right font-bold text-base tracking-wide text-blue-800'
+              : 'text-right text-red-700 font-bold text-base tracking-wide ';
             amountCell2.textContent = buyOrSell
               ? `$${amount.toFixed(2)}`
               : `-$${amount.toFixed(2)}`;

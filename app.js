@@ -66,11 +66,12 @@ function protectRoute(req, res, next){
     catch(err){
         res.clearCookie('logintoken')
         req.flash('danger', 'Session Expired, Please Sign In')
-        res.redirect('https://alpeada.com/dashboard')
+        // res.redirect('https://alpeada.com/dashboard')
+        res.redirect('http://localhost:5000/dashboard');
     }
   }
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 9000
 
 app.listen(port, ()=>{
     console.log(`App started on port ${port}`)
