@@ -27,8 +27,8 @@ body {
 }
 
 body {
-  background-color: #131722;
-  color: #fff;
+  background-color: #fff;
+  color: #131722;
 }
 
 /* .profile-pic::before{
@@ -49,7 +49,7 @@ html {
 }
 
 .nav {
-  border: 1px solid #3bb143;
+  border: 1px solid #004F98;
 }
 
 .active-link i {
