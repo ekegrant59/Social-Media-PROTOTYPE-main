@@ -406,16 +406,16 @@
                                                 <form class="space-y-4" action="#">
                                                     <div>
                                                         <label for="Edit Name" class="block mb-2 text-sm font-medium text-gray-900 ">Edit Name</label>
-                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder= '<%= user1.name %>' required>
+                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value= '<%= user1.name %>' required>
                                                     </div>
                                                     <div>
                                                         <label for="editEmail" class="block mb-2 text-sm font-medium text-gray-900 ">Edit Email</label>
-                                                        <input type="email" name="editEmail" id="editEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder='<%= user1.email %>' required>
+                                                        <input type="email" name="editEmail" id="editEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5"  required value="<%= user1.email %>" readonly>
                                                     </div>
                                 
                                                     <div>
                                                         <label for="EditNumber" class="block mb-2 text-sm font-medium text-gray-900">Edit Phone</label>
-                                                        <input type="number" name="EditNumber" id="EditNumber" placeholder='<%= user.number %>' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" required>
+                                                        <input type="number" name="EditNumber" id="EditNumber"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value= '<%= user.number %>' required>
                                                     </div>
                                                     
                                                    
