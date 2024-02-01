@@ -9,6 +9,8 @@ const session = require('express-session')
 // const adminschema = require('./schema/adminschema')
 const userschema = require('./schema/userschema')
 const balanceSchema = require('./schema/balanceSchema')
+const depositSchema = require('./schema/depositSchema')
+const withdrawSchema = require('./schema/withdrawSchema')
 // const fetch = require('node-fetch')
 
 const adminkey = process.env.ADMINKEY
@@ -47,7 +49,9 @@ app.get('/', protectRoute, async function(req,res){
       const auser = req.user.user.email
       const theuser = await userschema.findOne({email: auser})
       const theuser1 = await balanceSchema.findOne({email: auser})
-      res.render('index', {user: theuser, user1: theuser1})
+      const deposits = await depositSchema.find({email: auser})
+      const withdrawals = await withdrawSchema.find({email: auser})
+      res.render('index', {user: theuser, user1: theuser1, deposits: deposits, withdrawals: withdrawals })
   } catch(err){
       console.log(err)
   }
@@ -70,6 +74,59 @@ function protectRoute(req, res, next){
         // res.redirect('http://localhost:5000/dashboard');
     }
   }
+
+app.post('/deposit', async (req,res)=>{
+    const details = req.body
+    const date = new Date().toLocaleDateString()
+  
+    deposited()
+  
+    async function deposited(){
+      try{
+          const deposit = new depositSchema({
+              email: details.email,
+              coin: details.coin,
+              amount: details.amount,
+              status: 'Pending',
+              date: date
+          })
+          await deposit.save()
+  
+          res.redirect('/#history')
+      } catch(err){
+          console.log(err)
+      }
+  }
+  
+  })
+
+  app.post('/withdraw',async(req,res)=>{
+    const details = req.body
+    const date = new Date().toLocaleDateString()
+
+    console.log(details)
+  
+    withdraw()
+  
+    async function withdraw(){
+      try{
+        const withdraw = new withdrawSchema({
+            email: details.email,
+            address: details.address,
+            coin: details.coin,
+            amount: details.amount,
+            status: 'Pending',
+            date: date
+        })
+        await withdraw.save()
+
+        res.send('OK')
+        } catch(err){
+            console.log(err)
+        }
+    }
+  
+  })
 
 const port = process.env.PORT || 9000
 

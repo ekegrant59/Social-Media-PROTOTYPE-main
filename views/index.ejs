@@ -235,12 +235,33 @@
                                             </thead>
                                             <tbody>
                                                 <!-- Sample Deposit Data -->
-                                                <tr class="text-center text-gray-700 font-light">
-                                                    <td class="border-b">$500</td>
-                                                    <td class="border-b">Completed</td>
-                                                    <td class="border-b">USD</td>
-                                                    <td class="border-b">2024-01-31</td>
-                                                </tr>
+                                                <% if (deposits.length > 0) { %>
+                                                        <% deposits.forEach(deposit =>{ %>
+                                                            <tr class="text-center text-gray-700 font-light">
+                                                                <td class="border-b">$<%= deposit.amount %></td>
+                                                                <td class="border-b">
+                                                                    <% if (deposit.status == 'Pending'){%>
+                                                                        <span class="text-orange-500"><%= deposit.status %> </span>
+                                                                    <% }else{ %>
+                                                                        <span class="text-green-500"><%= deposit.status %> </span>
+                                                                    <% } %>
+                                                                </td>
+                                                                <td class="border-b"><%= deposit.coin %></td>
+                                                                <td class="border-b overflow-hidden"><%= deposit.date %></td>
+                                                            </tr>
+                                                        <% }) %> 
+                                                <% } else { %>
+                                                    <tr class="text-center">
+                                                        <table style="width: 100%;">
+                                                            <tbody >
+                                                                <tr class="text-center">
+                                                                    <td class="" style="width: 100%;">No Transactions found.....</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                    </tr>
+                                                <% } %>
                                                 <!-- Add more rows as needed -->
                                             </tbody>
                                         </table>
@@ -259,15 +280,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- Sample Withdrawal Data -->
-                                                <tr class="text-center text-gray-700 font-light">
-                                                    <td class="border-b">1234hvbruhunur8efgh</td>
-                                                    <td class="border-b">$300</td>
-                                                    <td class="border-b">Pending</td>
-                                                    <td class="border-b">BTC</td>
-                                                    <td class="border-b">2024-01-30</td>
+                                                <% if (withdrawals.length > 0) { %>
+                                                    <% withdrawals.forEach(withdrawal =>{ %>
+                                                        <tr class="text-center text-gray-700 font-light">
+                                                            <td class="border-b"><%= withdrawal.address %></td>
+                                                            <td class="border-b">$<%= withdrawal.amount %></td>
+                                                            <td class="border-b">
+                                                                <% if (withdrawal.status == 'Pending'){%>
+                                                                    <span class="text-orange-500"><%= withdrawal.status %> </span>
+                                                                <% }else{ %>
+                                                                    <span class="text-green-500"><%= withdrawal.status %> </span>
+                                                                <% } %>
+                                                            </td>
+                                                            <td class="border-b"><%= withdrawal.coin %></td>
+                                                            <td class="border-b overflow-hidden"><%= withdrawal.date %></td>
+                                                        </tr>
+                                                    <% }) %> 
+                                            <% } else { %>
+                                                <tr class="text-center">
+                                                    <table style="width: 100%;">
+                                                        <tbody >
+                                                            <tr class="text-center">
+                                                                <td class="" style="width: 100%;">No Transactions found.....</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
                                                 </tr>
-                                                <!-- Add more rows as needed -->
+                                            <% } %>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -373,7 +414,7 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="p-4 md:p-5">
-                                                <form class="space-y-4" action="#">
+                                                <form class="space-y-4" action="/deposit" method="post">
                                                         <div id="alert-1" class="flex items-center p-2 mb-2 text-blue-800 rounded-lg bg-blue-50 " role="alert">
                                                                 <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -413,12 +454,14 @@
                                                             </button>
                                                             </div>
                                                             <!-- <span class="details">Eth Chain</span> -->
-                                                            <select id="eth" name="eth" class="eth bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5"  >
+                                                            <select id="eth" name="coin" class="eth bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5"  >
                                                                 <option value="Bitcoin">Bitcoin</option>
                                                                 <option value="USDT TRC20">USDT TRC20</option>
+                                                                <option value="USDC TRC20">USDC TRC20</option>
                                                                 <option value="Ethereum">Ethereum</option>
                                                             </select>
                                                             <!-- <input type="password" placeholder="Confirm your password" required> -->
+                                                            <input type="text" readonly value="<%= user.email %>" class="hidden" name="email">
                                                         </div>
 
                                                     </div>
@@ -459,36 +502,66 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="p-4 md:p-5">
-                                                <form class="space-y-4" action="#">
+                                                <form class="space-y-4" id="withdraw_form">
+                                                    <div id="alert-border-1" class="flex items-center p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800  withdraw_success hidden" role="alert">
+                                                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                                        </svg>
+                                                        <div class="ms-3 withdraw_message">
+                                                           <p>Withdrawal Request Successful!!</p>
+                                                        </div>
+                                                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-1" aria-label="Close">
+                                                          <span class="sr-only">Dismiss</span>
+                                                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                          </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div id="alert-border-2" class="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 hidden withdraw_failed" role="alert">
+                                                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                                        </svg>
+                                                        <div class="ms-3 ">
+                                                            <p id="withdraw_error"></p>
+                                                        </div>
+                                                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-2" aria-label="Close">
+                                                          <span class="sr-only">Dismiss</span>
+                                                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                          </svg>
+                                                        </button>
+                                                    </div>
                                                     <div>
                                                         <label for="wallet address" class="block mb-2 text-sm font-medium text-gray-900 ">Wallet Address</label>
-                                                        <input type="text" name="wallet" id="wallet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder="Wallet Address" required>
+                                                        <input type="text" name="address" id="wallet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder="Wallet Address" required>
                                                     </div>
                                                     <div>
                                                         <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 ">Amount</label>
-                                                        <input type="number" name="amount" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder="$0000" required>
+                                                        <input type="number" name="amount" id="amount1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" placeholder="Max: $<%= user1.balance %>" required>
                                                     </div>
                                                     <div>
                                                         <div class="input-box">
                                                              <label for="coin type" class="block mb-2 text-sm font-medium text-gray-900 ">Crypto Currency</label>
                                                        
                                                             <!-- <span class="details">Eth Chain</span> -->
-                                                            <select id="eth" name="eth" class="eth bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5"  >
+                                                            <select id="eth" name="coin" class="eth bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5"  >
                                                                 <option value="Bitcoin">Bitcoin</option>
                                                                 <option value="USDT TRC20">USDT TRC20</option>
+                                                                <option value="USDC TRC20">USDC TRC20</option>
                                                                 <option value="Ethereum">Ethereum</option>
                                                             </select>
                                                             <!-- <input type="password" placeholder="Confirm your password" required> -->
                                                         </div>
+                                                        <input type="text" readonly value="<%= user.email %>" class="hidden" name="email">
 
                                                     </div>
                                                     <div>
                                                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your password</label>
-                                                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" required>
+                                                        <input type="password" name="password" id="password1" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" required>
                                                     </div>
                                                     
                                                    
-                                                    <button type="submit" class="w-full text-white bg-[#004F98] hover:bg-[#004F98] focus:ring-2 focus:outline-none focus:ring-[#FFB55C] font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Withdraw</button>
+                                                    <button type="submit" class="w-full text-white bg-[#004F98] hover:bg-[#004F98] focus:ring-2 focus:outline-none focus:ring-[#FFB55C] font-medium rounded-lg text-sm px-5 py-2.5 text-center " id="withdraw_btn">Withdraw</button>
                                                    
                                                 </form>
                                             </div>
@@ -496,6 +569,51 @@
                                     </div>
                                 </div> 
                             </div>
+                            <script>
+                                let withdraw_success = document.querySelector('.withdraw_success')
+                                let withdraw_failed = document.querySelector('.withdraw_failed')
+                                let withdraw_error = document.querySelector('#withdraw_error')
+                                let withdraw_btn = document.querySelector('#withdraw_btn')
+                                let amount = document.querySelector('#amount1')
+                                let password = document.querySelector('#password1')
+                                let balance = parseInt("<%= user1.balance %>")
+                                let password11 = "<%= user.password %>"
+                                let form = document.querySelector('#withdraw_form')
+                                // console.log(password11)
+
+                                form.addEventListener('submit', (e)=>{
+                                    e.preventDefault()
+                                    // console.log(amount)
+
+                                    if (amount.value > balance ){
+                                        withdraw_failed.classList.remove("hidden")
+                                        withdraw_error.innerHTML = "Insufficient Balance, Please Try Again"
+                                    } else if (password.value != password11){
+                                        // console.log(password.value)
+                                        withdraw_failed.classList.remove("hidden")
+                                        withdraw_error.innerHTML = "Incorrect Password, Please Try Again"
+                                    } else{
+                                        // withdraw_btn.setAttribute('disabled')
+                                        const formdata = new FormData(form);
+                                        const payload = new URLSearchParams(formdata);
+                                        fetch('/withdraw', {
+                                            method:'POST',
+                                            body: payload,
+                                            // redirect: "follow"
+                                        }).then(res =>{
+                                            if (res.ok){
+                                                withdraw_success.classList.remove("hidden")
+                                                // res.json()
+                                            }
+                                        }).catch(err =>{
+                                            console.log(err)
+                                            withdraw_failed.classList.remove("hidden")
+                                            withdraw_error.innerHTML = "Withdrawal Request Failed, Please Try Again"
+                                        })
+                                    }
+                                })
+
+                            </script>
                             <div class="flex items-center space-x-4">
                                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12H4C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.25022 4 6.82447 5.38734 5.38451 7.50024L8 7.5V9.5H2V3.5H4L3.99989 5.99918C5.82434 3.57075 8.72873 2 12 2ZM13 7L12.9998 11.585L16.2426 14.8284L14.8284 16.2426L10.9998 12.413L11 7H13Z" fill="currentColor"></path></svg>
                                 <a href="#history" class="text-lg font-light">Transaction history</a>
@@ -541,7 +659,7 @@
                                 
                                                     <div>
                                                         <label for="EditNumber" class="block mb-2 text-sm font-medium text-gray-900">Edit Phone</label>
-                                                        <input type="number" name="EditNumber" id="EditNumber"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value= '<%= user.number %>' required>
+                                                        <input type="number" name="EditNumber" id="EditNumber"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value="<%= user.number %>" required>
                                                     </div>
                                                     
                                                    
