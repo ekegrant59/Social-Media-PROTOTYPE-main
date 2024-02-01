@@ -199,7 +199,104 @@
 
 
             <section id="history">
-                
+                    <div class="w-[100%] mx-auto pt-[1em]">
+
+                        <div class="max-w-xl mx-auto">
+
+                            <!-- Tabs -->
+                            <div class="mb-6">
+                                <div class="flex justify-center">
+                                    <div>
+                                         <input type="radio" id="tab-deposit" name="tab" class="hidden" checked>
+                                        <label id="tab-deposit-label" for="tab-deposit" class="cursor-pointer text-gray-800 font-normal text-base  bg-[#FFB55C] py-2 px-6 rounded-t-lg flex items-center" onclick="showTab('deposit')">Deposit <i class="ri-arrow-down-circle-line pl-1"></i></label>
+
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="tab-withdrawal" name="tab" class="hidden">
+                                        <label id="tab-withdrawal-label" for="tab-withdrawal" class="cursor-pointer text-gray-800 font-normal text-base bg-white py-2 px-6  rounded-t-lg flex items-center" onclick="showTab('withdrawal')">Withdrawal <i class="ri-arrow-up-circle-line pl-1"></i></label>
+        
+                                    </div>
+                                    
+                                
+                                </div>
+                               
+                                <!-- Content -->
+                                <div class="bg-[#f0f8ff] p-4 rounded-b-lg">
+                                    <!-- Deposit Tab -->
+                                    <div class="tab-content overflow-scroll" id="tab-deposit-content">
+                                        <table class="min-w-full border bg-[#f0f8ff]">
+                                            <thead>
+                                                <tr class="text-gray-800 font-semibold text-center ">
+                                                    <th class="border-b p2">Amount</th>
+                                                    <th class="border-b p2">Status</th>
+                                                    <th class="border-b p2">Currency</th>
+                                                    <th class="border-b p2">Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Sample Deposit Data -->
+                                                <tr class="text-center text-gray-700 font-light">
+                                                    <td class="border-b">$500</td>
+                                                    <td class="border-b">Completed</td>
+                                                    <td class="border-b">USD</td>
+                                                    <td class="border-b">2024-01-31</td>
+                                                </tr>
+                                                <!-- Add more rows as needed -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- Withdrawal Tab -->
+                                    <div class="hidden tab-content overflow-scroll " id="tab-withdrawal-content">
+                                        <table class="min-w-full border bg-[#f0f8ff]">
+                                            <thead>
+                                                <tr class="text-gray-800 font-semibold text-center ">
+                                                    <th class="border-b p-3">Dest. Address</th>
+                                                    <th class="border-b p-3">Amount</th>
+                                                    <th class="border-b p-3">Status</th>
+                                                    <th class="border-b p-3">Currency</th>
+                                                    <th class="border-b p-3">Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Sample Withdrawal Data -->
+                                                <tr class="text-center text-gray-700 font-light">
+                                                    <td class="border-b">1234hvbruhunur8efgh</td>
+                                                    <td class="border-b">$300</td>
+                                                    <td class="border-b">Pending</td>
+                                                    <td class="border-b">BTC</td>
+                                                    <td class="border-b">2024-01-30</td>
+                                                </tr>
+                                                <!-- Add more rows as needed -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <script>
+                            function showTab(tabName) {
+                                if (tabName === 'deposit') {
+                                    document.getElementById('tab-deposit-content').classList.remove('hidden');
+                                    document.getElementById('tab-withdrawal-content').classList.add('hidden');
+                                     document.getElementById('tab-deposit-label').classList.add('bg-[#FFB55C]');
+                                     document.getElementById('tab-withdrawal-label').classList.add('bg-white');
+                                     document.getElementById('tab-withdrawal-label').classList.remove('bg-[#FFB55C]');
+                                     document.getElementById('tab-deposit-label').classList.remove('bg-white');
+                                } else if (tabName === 'withdrawal') {
+                                    document.getElementById('tab-deposit-content').classList.add('hidden');
+                                    document.getElementById('tab-withdrawal-content').classList.remove('hidden');
+                                    document.getElementById('tab-deposit-label').classList.add('bg-white');
+                                     document.getElementById('tab-deposit-label').classList.remove('bg-[#FFB55C]');
+                                     document.getElementById('tab-withdrawal-label').classList.add('bg-[#FFB55C]');
+                                       document.getElementById('tab-withdrawal-label').classList.remove('bg-white');
+                                }
+                            }
+                        </script>
+
+                    </div>
             </section>
 
             <section id="profile">
