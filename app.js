@@ -78,6 +78,10 @@ function protectRoute(req, res, next){
 app.post('/deposit', async (req,res)=>{
     const details = req.body
     const date = new Date().toLocaleDateString()
+    const email = details.email
+
+    const theuser = await userschema.findOne({email:email})
+    // console.log(theuser)
   
     deposited()
   
@@ -85,6 +89,7 @@ app.post('/deposit', async (req,res)=>{
       try{
           const deposit = new depositSchema({
               email: details.email,
+              name: `${theuser.firstName} ${theuser.lastName}`,
               coin: details.coin,
               amount: details.amount,
               status: 'Pending',
@@ -103,8 +108,23 @@ app.post('/deposit', async (req,res)=>{
   app.post('/withdraw',async(req,res)=>{
     const details = req.body
     const date = new Date().toLocaleDateString()
+    const email = details.email
+    const address = details.address
 
-    console.log(details)
+    const theuser = await userschema.findOne({email:email})
+
+
+    function truncateString(str, maxLength) { 
+      if (str.length > maxLength) { 
+          return str.slice(0, maxLength - 3) + '...'; 
+      } 
+      return str; 
+    } 
+    
+  let truncatedAddress = truncateString(address, 15); 
+  console.log(truncatedAddress);
+
+    // console.log(details)
   
     withdraw()
   
@@ -112,7 +132,8 @@ app.post('/deposit', async (req,res)=>{
       try{
         const withdraw = new withdrawSchema({
             email: details.email,
-            address: details.address,
+            name: `${theuser.firstName} ${theuser.lastName}`,
+            address: truncatedAddress,
             coin: details.coin,
             amount: details.amount,
             status: 'Pending',

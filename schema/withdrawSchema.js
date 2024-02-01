@@ -4,6 +4,7 @@ mongoose.connect(mongodb)
 
 const withdrawSchema = new mongoose.Schema({
     email: String,
+    name: String,
     address: String,
     amount: Number,
     coin: String,

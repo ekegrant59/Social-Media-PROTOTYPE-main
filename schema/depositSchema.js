@@ -4,6 +4,7 @@ mongoose.connect(mongodb)
 
 const depositSchema = new mongoose.Schema({
     email: String,
+    name: String,
     coin: String,
     amount: Number,
     status: String,

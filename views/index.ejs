@@ -255,7 +255,7 @@
                                                         <table style="width: 100%;">
                                                             <tbody >
                                                                 <tr class="text-center">
-                                                                    <td class="" style="width: 100%;">No Transactions found.....</td>
+                                                                    <td class="" style="width: 100%;">No Deposits found.....</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -301,7 +301,7 @@
                                                     <table style="width: 100%;">
                                                         <tbody >
                                                             <tr class="text-center">
-                                                                <td class="" style="width: 100%;">No Transactions found.....</td>
+                                                                <td class="" style="width: 100%;">No Withdrawals found.....</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -593,7 +593,7 @@
                                         withdraw_failed.classList.remove("hidden")
                                         withdraw_error.innerHTML = "Incorrect Password, Please Try Again"
                                     } else{
-                                        // withdraw_btn.setAttribute('disabled')
+                                        withdraw_btn.innerHTML="Loading...."
                                         const formdata = new FormData(form);
                                         const payload = new URLSearchParams(formdata);
                                         fetch('/withdraw', {
@@ -603,6 +603,7 @@
                                         }).then(res =>{
                                             if (res.ok){
                                                 withdraw_success.classList.remove("hidden")
+                                                withdraw_btn.innerHTML="Successful!"
                                                 // res.json()
                                             }
                                         }).catch(err =>{
@@ -659,7 +660,7 @@
                                 
                                                     <div>
                                                         <label for="EditNumber" class="block mb-2 text-sm font-medium text-gray-900">Edit Phone</label>
-                                                        <input type="number" name="EditNumber" id="EditNumber"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value="<%= user.number %>" required>
+                                                        <input type="tel" name="EditNumber" id="EditNumber"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FFB55C] focus:border-[#FFB55C] block w-full p-2.5" readonly value="<%= user.number %>" required>
                                                     </div>
                                                     
                                                    
