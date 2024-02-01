@@ -560,6 +560,37 @@
                                                           <button onclick="copyText()"type="button" class="text-white bg-[#004F98] hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-0.5 text-center ">Copy Address</button>
   
                                                         </div>
+
+                                                        <script>
+                                                               function copyText() {
+                                                                            // Get the input element
+                                                                            var inputElement = document.getElementById("textToCopy");
+
+                                                                            // Select the text in the input element
+                                                                            inputElement.select();
+                                                                            inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+                                                                            try {
+                                                                            // Copy the selected text to the clipboard using the async Clipboard API
+                                                                            navigator.clipboard.writeText(inputElement.value)
+                                                                                .then(() => {
+                                                                                    // Deselect the text
+                                                                                    inputElement.setSelectionRange(0, 0);
+
+                                                                                    // Optionally, provide visual feedback or notify the user
+                                                                                    alert("USDT TRC20 address has been copied: " + inputElement.value);
+                                                                                })
+                                                                                .catch(err => {
+                                                                                    console.error('Unable to copy text to clipboard', err);
+                                                                                    alert('Failed to copy USDT TRC20 address. Please try again.');
+                                                                                });
+                                                                        } catch (err) {
+                                                                            console.error('Unable to use Clipboard API', err);
+                                                                            // Fallback to the execCommand method for older browsers
+                                                                            document.execCommand("copy");
+                                                                            alert("USDT TRC20 address has been copied: " + inputElement.value);
+                                                                        }                                                     }
+                                                        </script>
                                                     
                                                     </div>
                                                     <div class="absolute right-10">
@@ -623,7 +654,37 @@
                                                           <button onclick="copyBTC()"type="button" class="text-white bg-[#004F98] hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-0.5 text-center ">Copy Address</button>
   
                                                         </div>
-                                                    
+                                                    <script>
+                                                        function copyBTC() {
+                                                                    // Get the input element
+                                                                        var inputElement = document.getElementById("BTCToCopy");
+
+                                                                        // Select the text in the input element
+                                                                        inputElement.select();
+                                                                        inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+                                                                        try {
+        // Copy the selected text to the clipboard using the async Clipboard API
+        navigator.clipboard.writeText(inputElement.value)
+            .then(() => {
+                // Deselect the text
+                inputElement.setSelectionRange(0, 0);
+
+                // Optionally, provide visual feedback or notify the user
+                alert("BITCOIN address has been copied: " + inputElement.value);
+            })
+            .catch(err => {
+                console.error('Unable to copy text to clipboard', err);
+                alert('Failed to copy BITCOIN address. Please try again.');
+            });
+    } catch (err) {
+        console.error('Unable to use Clipboard API', err);
+        // Fallback to the execCommand method for older browsers
+        document.execCommand("copy");
+        alert("BITCOIN address has been copied: " + inputElement.value);
+    }           
+                                                                    }
+                                                    </script>
                                                     </div>
                                                     <div class="absolute right-10">
                                                         <div class="border-0 bg-[#FFB55C] py-1 px-1 rounded-2xl">
@@ -671,6 +732,37 @@
                                                           <button onclick="copyUSDCn()"type="button" class="text-white bg-[#004F98] hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-0.5 text-center ">Copy Address</button>
   
                                                         </div>
+
+                                                        <script>
+                                                             function copyUSDCn() {
+                                                                    // Get the input element
+                                                                    var inputElement = document.getElementById("USDCnToCopy");
+
+                                                                    // Select the text in the input element
+                                                                    inputElement.select();
+                                                                    inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+                                                                    try {
+        // Copy the selected text to the clipboard using the async Clipboard API
+        navigator.clipboard.writeText(inputElement.value)
+            .then(() => {
+                // Deselect the text
+                inputElement.setSelectionRange(0, 0);
+
+                // Optionally, provide visual feedback or notify the user
+                alert("USD Coin TRC20 address has been copied: " + inputElement.value);
+            })
+            .catch(err => {
+                console.error('Unable to copy text to clipboard', err);
+                alert('Failed to copy USD Coin TRC20 address. Please try again.');
+            });
+    } catch (err) {
+        console.error('Unable to use Clipboard API', err);
+        // Fallback to the execCommand method for older browsers
+        document.execCommand("copy");
+        alert("USD Coin TRC20 address has been copied: " + inputElement.value);
+    }                    }
+                                                        </script>
                                                     </div>
                                                     
                                                 </div>
@@ -720,6 +812,37 @@
                                                           <button onclick="copyERC()"type="button" class="text-white bg-[#004F98] hover:bg-blue-300 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-0.5 text-center ">Copy Address</button>
   
                                                         </div>
+
+                                                        <script>
+                                                             function copyERC() {
+                                                                        // Get the input element
+                                                                        var inputElement = document.getElementById("ERCToCopy");
+
+                                                                        // Select the text in the input element
+                                                                        inputElement.select();
+                                                                        inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+                                                                        try {
+        // Copy the selected text to the clipboard using the async Clipboard API
+        navigator.clipboard.writeText(inputElement.value)
+            .then(() => {
+                // Deselect the text
+                inputElement.setSelectionRange(0, 0);
+
+                // Optionally, provide visual feedback or notify the user
+                alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
+            })
+            .catch(err => {
+                console.error('Unable to copy text to clipboard', err);
+                alert('Failed to copy Tether USDT ERC20 address. Please try again.');
+            });
+    } catch (err) {
+        console.error('Unable to use Clipboard API', err);
+        // Fallback to the execCommand method for older browsers
+        document.execCommand("copy");
+        alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
+    }                                         }
+                                                        </script>
                                                     </div>
                                                     
                                                 </div>
