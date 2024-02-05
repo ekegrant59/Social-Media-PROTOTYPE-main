@@ -341,10 +341,10 @@
             </section>
 
             <section id="profile">
-                <div>
+                <div class="w-full">
                     <div class="w-full flex justify-center items-center ">
                         <div>
-                            <img src="/assets/img/alpeada-logo copy/cover.png" alt="" class="w-[220px] h-[90px]">
+                            <img src="/assets/img/alpeada-logo copy/cover.png" alt="" class="w-[220px] h-[80px]">
                         </div>
                     </div>
                     <div class="px-[1em] py-1 ">
@@ -361,7 +361,7 @@
                                 <div class="space-y-[.25em]">
                                     <div>
                                         <div class="relative flex justify-center">
-                                            <img class="w-[55px] h-[55px] rounded-[100%]" src="/assets/img/8380015.jpg" alt="">    
+                                            <img class="w-[45px] h-[45px] rounded-[100%]" src="/assets/img/8380015.jpg" alt="">    
                                         </div>
                                     </div>
                                     <div class="uppercase  font-light text-xl">
@@ -377,7 +377,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-[1em] py-3 flex justify-center ">
+                    <div class="px-[1em] flex justify-center ">
                         <div>
                             <h1 id="account-balanc " class="font-bold text-gray-800 text-3xl">$<%= user1.balance %>.00</h1>
                         </div>
@@ -385,8 +385,8 @@
 
 
 
-                    <div class="px-[1em] py-[2em] flex justify-start">
-                        <div class="space-y-[2.5em]">
+                    <div class="px-[1em] py-[1em]  w-[100%]">
+                        <div class="space-y-[2em]">
                            
                             <!-- deposit -->
                             <div class="flex items-center space-x-4">
@@ -672,6 +672,48 @@
                                     </div>
                                 </div> 
                             </div>
+                             <div class="flex justify-between items-center space-x-4">
+                                <button onclick="copyRef()" class="flex items-center space-x-4">
+                                     <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 14H11C7.54202 14 4.53953 15.9502 3.03239 18.8107C3.01093 18.5433 3 18.2729 3 18C3 12.4772 7.47715 8 13 8V2.5L23.5 11L13 19.5V14ZM11 12H15V15.3078L20.3214 11L15 6.69224V10H13C10.5795 10 8.41011 11.0749 6.94312 12.7735C8.20873 12.2714 9.58041 12 11 12Z"></path></svg>
+                                     <a href="#history" class="text-lg font-light">Refer a Friend! </a>
+                            
+                                </button>
+                                <button onclick="copyRef()" class="text-sm font-semibold pr-6 text-[#FFB55C]">
+                                      <input class="hidden" type="text" id="refLink" value="this should be the refferral link ejs code">
+                                    alpeada.com
+                                </button>
+                            </div>
+                            <script>
+                                function copyRef() {
+                                                                    // Get the input element
+                                                                        var inputElement = document.getElementById("refLink");
+
+                                                                        // Select the text in the input element
+                                                                        inputElement.select();
+                                                                        inputElement.setSelectionRange(0, 99999); // For mobile devices
+
+                                                                        try {
+                                                                                // Copy the selected text to the clipboard using the async Clipboard API
+                                                                                navigator.clipboard.writeText(inputElement.value)
+                                                                                    .then(() => {
+                                                                                        // Deselect the text
+                                                                                        inputElement.setSelectionRange(0, 0);
+
+                                                                                        // Optionally, provide visual feedback or notify the user
+                                                                                        alert("Referral link has been copied: " + inputElement.value);
+                                                                                    })
+                                                                                    .catch(err => {
+                                                                                        console.error('Unable to copy text to clipboard', err);
+                                                                                        alert('Failed to copy Referral link. Please try again.');
+                                                                                    });
+                                                                            } catch (err) {
+                                                                                console.error('Unable to use Clipboard API', err);
+                                                                                // Fallback to the execCommand method for older browsers
+                                                                                document.execCommand("copy");
+                                                                                alert("Referral link has been copied: " + inputElement.value);
+                                                                            }           
+                                                                    }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -812,25 +854,25 @@
                                                                         inputElement.setSelectionRange(0, 99999); // For mobile devices
 
                                                                         try {
-        // Copy the selected text to the clipboard using the async Clipboard API
-        navigator.clipboard.writeText(inputElement.value)
-            .then(() => {
-                // Deselect the text
-                inputElement.setSelectionRange(0, 0);
+                                                                                // Copy the selected text to the clipboard using the async Clipboard API
+                                                                                navigator.clipboard.writeText(inputElement.value)
+                                                                                    .then(() => {
+                                                                                        // Deselect the text
+                                                                                        inputElement.setSelectionRange(0, 0);
 
-                // Optionally, provide visual feedback or notify the user
-                alert("BITCOIN address has been copied: " + inputElement.value);
-            })
-            .catch(err => {
-                console.error('Unable to copy text to clipboard', err);
-                alert('Failed to copy BITCOIN address. Please try again.');
-            });
-    } catch (err) {
-        console.error('Unable to use Clipboard API', err);
-        // Fallback to the execCommand method for older browsers
-        document.execCommand("copy");
-        alert("BITCOIN address has been copied: " + inputElement.value);
-    }           
+                                                                                        // Optionally, provide visual feedback or notify the user
+                                                                                        alert("BITCOIN address has been copied: " + inputElement.value);
+                                                                                    })
+                                                                                    .catch(err => {
+                                                                                        console.error('Unable to copy text to clipboard', err);
+                                                                                        alert('Failed to copy BITCOIN address. Please try again.');
+                                                                                    });
+                                                                            } catch (err) {
+                                                                                console.error('Unable to use Clipboard API', err);
+                                                                                // Fallback to the execCommand method for older browsers
+                                                                                document.execCommand("copy");
+                                                                                alert("BITCOIN address has been copied: " + inputElement.value);
+                                                                            }           
                                                                     }
                                                     </script>
                                                     </div>
