@@ -522,7 +522,7 @@ let lastResetDate = getCurrentDate();
         }
 
         // Set interval for generating loss and storing every 1 minute (adjust as needed, values are in milliseconds)
-        setInterval(generateLossAndStore, 900000);
+        // setInterval(generateLossAndStore, 900000);
 
         // Run the function every 3 to 7 hours (adjust as needed, values are in milliseconds)
         // setInterval(runAndStore, Math.floor(Math.random() * (7 * 60 * 60 * 1000 - 3 * 60 * 60 * 1000 + 1)) + 3 * 60 * 60 * 1000);
@@ -530,17 +530,17 @@ let lastResetDate = getCurrentDate();
         // Log the generated values every 30 seconds (for testing purposes)
         //setInterval(() => console.log("Generated Values:", generatedValues), 30000);
     // Set interval for updating BTC price and date/time
-        setInterval(runAndStore, 600000);  // Run every 30 seconds
+        // setInterval(runAndStore, 600000);  // Run every 30 seconds
         // setInterval(getBTCPriceWithRetry, 600000)
 
         // Log the generated values every 30 seconds (for testing purposes)
-        setInterval(() => console.log("Generated Values:", generatedValues), 1800000);
+        // setInterval(() => console.log("Generated Values:", generatedValues), 1800000);
 
         // Set interval for fetching current time every second
         setInterval(updateCurrentTime, 1000);
 
         // Load bot history from local storage on page load
-        loadBotHistoryFromLocalStorage();
+        // loadBotHistoryFromLocalStorage();
 
         // Set interval for saving bot history to local storage every 5 minutes (adjust as needed, values are in milliseconds)
         // setInterval(saveBotHistoryToLocalStorage, 300000);
