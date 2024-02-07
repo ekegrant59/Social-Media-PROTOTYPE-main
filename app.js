@@ -11,6 +11,8 @@ const userschema = require('./schema/userschema')
 const balanceSchema = require('./schema/balanceSchema')
 const depositSchema = require('./schema/depositSchema')
 const withdrawSchema = require('./schema/withdrawSchema')
+const botSchema = require('./schema/botSchema')
+
 // const fetch = require('node-fetch')
 
 const adminkey = process.env.ADMINKEY
@@ -51,7 +53,8 @@ app.get('/', protectRoute, async function(req,res){
       const theuser1 = await balanceSchema.findOne({email: auser})
       const deposits = await depositSchema.find({email: auser})
       const withdrawals = await withdrawSchema.find({email: auser})
-      res.render('index', {user: theuser, user1: theuser1, deposits: deposits, withdrawals: withdrawals })
+      const botTxns = await botSchema.find({email:auser})
+      res.render('index', {user: theuser, user1: theuser1, deposits: deposits, withdrawals: withdrawals, botTxns: botTxns})
   } catch(err){
       console.log(err)
   }

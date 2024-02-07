@@ -162,11 +162,11 @@
                             </tr>
                             <tr>
                                 <th class="text-left font-medium text-base text-[#fafafa] ">Deposit</th>
-                                <td class="text-right font-semibold text-base tracking-wide text-[#fafafa]">$<%= user1.deposit %>.00</td>   
+                                <td class="text-right font-semibold text-base tracking-wide text-[#fafafa]">$<%= user1.deposit %></td>   
                             </tr>
                             <tr>
                                 <th class=" text-left font-medium text-base text-[#fafafa]">Withdrawal</th>
-                                <td class="text-right font-semibold text-base tracking-wide text-[#fafafa]">$<%= user1.withdrawal %>.00</td>   
+                                <td class="text-right font-semibold text-base tracking-wide text-[#fafafa]">$<%= user1.withdrawal %></td>   
                             </tr>
                             <tr>
                                 <th class=" text-left font-medium text-base text-[#fafafa]">Balance</th>
@@ -180,6 +180,7 @@
                 <!-- each bot history -->
                 <div id="eachHistory" class="my-[10px]">
                     <div class="block">
+
                         <table class="w-[90%] mx-auto">
                             <tr>
                                 <th class=" text-left"> <span class="font-light text-blue-500"></span> </th>
@@ -187,10 +188,30 @@
                             </tr>
                             <tr>
                                 <th id="btcPrice" class=" text-left font-semibold text-xs"></th>
-                                <td id="amount" class="text-right font-bold text-base tracking-wide hidden"></td>   
+                                <td id="amount" class="text-right font-bold text-base tracking-wide"></td>   
                             </tr>
                         </table>
                         
+                        <% if (botTxns.length > 0) { %>
+                            <% botTxns.forEach(botTxn =>{ %>
+                                <table class="w-[90%] mx-auto">
+                                    <tr>
+                                        <th class=" text-left"> <span class="font-light text-blue-500">BTC <%= botTxn.type  %></span> </th>
+                                        <td id="dateTime" class="text-right font-light text-xs"><%= botTxn.time  %></td> 
+                                    </tr>
+                                    <tr>
+                                        <th id="btcPrice" class=" text-left font-semibold text-xs"><%= botTxn.btcPrice %>.00</th>
+                                        <td id="amount" class="text-right font-bold text-base tracking-wide">
+                                            <% if (botTxn.loss){ %>
+                                                <span style="color: red;">-$<%= botTxn.amount%></span>
+                                            <% }else{ %>
+                                                <span style="color: green;">$<%= botTxn.amount%></span>
+                                            <% } %>
+                                        </td>   
+                                    </tr>
+                                </table>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
                 <!-- end -->
