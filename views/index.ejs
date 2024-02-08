@@ -181,7 +181,7 @@
                 <div id="eachHistory" class="my-[10px]">
                     <div class="block">
 
-                        <table class="w-[90%] mx-auto">
+                        <!-- <table class="w-[90%] mx-auto">
                             <tr>
                                 <th class=" text-left"> <span class="font-light text-blue-500"></span> </th>
                                 <td id="dateTime" class="text-right font-light text-xs"></td> 
@@ -190,10 +190,10 @@
                                 <th id="btcPrice" class=" text-left font-semibold text-xs"></th>
                                 <td id="amount" class="text-right font-bold text-base tracking-wide"></td>   
                             </tr>
-                        </table>
+                        </table> -->
                         
                         <% if (botTxns.length > 0) { %>
-                            <% botTxns.forEach(botTxn =>{ %>
+                            <% botTxns.reverse().forEach(botTxn =>{ %>
                                 <table class="w-[90%] mx-auto">
                                     <tr>
                                         <th class=" text-left"> <span class="font-light text-blue-500">BTC <%= botTxn.type  %></span> </th>
