@@ -150,3 +150,9 @@ td {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.botContain{
+  width: 90%;
+  height: 57vh;
+  overflow: scroll;
+}

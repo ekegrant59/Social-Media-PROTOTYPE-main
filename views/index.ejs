@@ -147,7 +147,7 @@
 
             <!-- bot section -->
             <section id="bot">
-                <div class=" w-full  bg-[#004F98]  border-0 rounded-b-lg pt-1">
+                <div class=" w-full h-[40vh]  bg-[#004F98]  border-0 rounded-b-lg pt-1">
                     <div class="flex justify-center items-center border-b-[.5px] border-b-white pb-2 ">
                         <div class="text-[#fafafa]">
                             <p id="currentDate" class=" tracking-wide font-light text-sm"></p>
@@ -176,45 +176,40 @@
                 
                     </div>
                 </div>
-
-                <!-- each bot history -->
+                <!-- <div class="w-full h-[200px] overflow-scroll" > -->
+                    <!-- each bot history -->
                 <div id="eachHistory" class="my-[10px]">
-                    <div class="block">
-
-                        <!-- <table class="w-[90%] mx-auto">
-                            <tr>
-                                <th class=" text-left"> <span class="font-light text-blue-500"></span> </th>
-                                <td id="dateTime" class="text-right font-light text-xs"></td> 
-                            </tr>
-                            <tr>
-                                <th id="btcPrice" class=" text-left font-semibold text-xs"></th>
-                                <td id="amount" class="text-right font-bold text-base tracking-wide"></td>   
-                            </tr>
-                        </table> -->
-                        
-                        <% if (botTxns.length > 0) { %>
+                    <div class="flex justify-center items-center">
+                        <div class="botContain ">
+                            <% if (botTxns.length > 0) { %>
                             <% botTxns.reverse().forEach(botTxn =>{ %>
-                                <table class="w-[90%] mx-auto">
+                                <table class="w-full mx-auto my-2">
                                     <tr>
-                                        <th class=" text-left"> <span class="font-light text-blue-500">BTC <%= botTxn.type  %></span> </th>
-                                        <td id="dateTime" class="text-right font-light text-xs"><%= botTxn.time  %></td> 
+                                        <th class=" text-left"> <span class="font-semibold text-sm text-gray-800">BTCUSD <span class="text-orange-500"><%= botTxn.type  %></span> </span> </th>
+                                         <td id="amount" class="text-right font-bold text-sm tracking-wide">
+                                            <% if (botTxn.loss){ %>
+                                                <span class="text-red-600">-$<%= botTxn.amount%></span>
+                                            <% }else{ %>
+                                                <span class="text-green-600">$<%= botTxn.amount%></span>
+                                            <% } %>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th id="btcPrice" class=" text-left font-semibold text-xs"><%= botTxn.btcPrice %>.00</th>
-                                        <td id="amount" class="text-right font-bold text-base tracking-wide">
-                                            <% if (botTxn.loss){ %>
-                                                <span style="color: red;">-$<%= botTxn.amount%></span>
-                                            <% }else{ %>
-                                                <span style="color: green;">$<%= botTxn.amount%></span>
-                                            <% } %>
-                                        </td>   
+                                        <th id="btcPrice" class=" text-left font-light text-gray-500 text-xs"><%= botTxn.btcPrice %>.00</th>
+                                         <td id="dateTime" class="text-right font-light text-gray-500 text-xs tracking-tighter"><%= botTxn.time  %></td> 
+                                         
                                     </tr>
                                 </table>
                             <% }) %> 
                         <% } %>
+                        </div>
+                        
                     </div>
                 </div>
                 <!-- end -->
+                <!-- </div> -->
+
+                
             </section>
 
 
@@ -1034,24 +1029,24 @@
                                                                         inputElement.setSelectionRange(0, 99999); // For mobile devices
 
                                                                         try {
-        // Copy the selected text to the clipboard using the async Clipboard API
-        navigator.clipboard.writeText(inputElement.value)
-            .then(() => {
-                // Deselect the text
-                inputElement.setSelectionRange(0, 0);
+                                                                    // Copy the selected text to the clipboard using the async Clipboard API
+                                                                    navigator.clipboard.writeText(inputElement.value)
+                                                                        .then(() => {
+                                                                            // Deselect the text
+                                                                            inputElement.setSelectionRange(0, 0);
 
-                // Optionally, provide visual feedback or notify the user
-                alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
-            })
-            .catch(err => {
-                console.error('Unable to copy text to clipboard', err);
-                alert('Failed to copy Tether USDT ERC20 address. Please try again.');
-            });
-    } catch (err) {
-        console.error('Unable to use Clipboard API', err);
-        // Fallback to the execCommand method for older browsers
-        document.execCommand("copy");
-        alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
+                                                                            // Optionally, provide visual feedback or notify the user
+                                                                            alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
+                                                                        })
+                                                                        .catch(err => {
+                                                                            console.error('Unable to copy text to clipboard', err);
+                                                                            alert('Failed to copy Tether USDT ERC20 address. Please try again.');
+                                                                        });
+                                                                } catch (err) {
+                                                                    console.error('Unable to use Clipboard API', err);
+                                                                    // Fallback to the execCommand method for older browsers
+                                                                    document.execCommand("copy");
+                                                                    alert("Tether USDT ERC20 address has been copied: " + inputElement.value);
     }                                         }
                                                         </script>
                                                     </div>
