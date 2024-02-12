@@ -60,6 +60,11 @@ app.get('/', protectRoute, async function(req,res){
   }
 })
 
+app.get('/logout', (req,res)=>{
+  res.clearCookie('logintoken')
+  req.flash('Success', 'Logged Out!, PLease Sign In')
+  return res.redirect('https://alpeada.com/signup')
+})
 
 function protectRoute(req, res, next){
     const token = req.cookies.logintoken
