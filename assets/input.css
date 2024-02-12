@@ -156,3 +156,9 @@ td {
   height: 57vh;
   overflow: scroll;
 }
+
+.depositContain{
+  width: 100%;
+  height: 88%;
+  overflow: scroll;
+}
