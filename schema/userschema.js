@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     password: String,
     encryptedpassword: String,
     number: String,
-    date: String
+    date: String,
+    kyc: { type: mongoose.Schema.Types.ObjectId, ref: 'kyc', required: true }
 })
 
 module.exports = mongoose.model('user', userSchema)

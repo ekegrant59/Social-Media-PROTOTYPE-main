@@ -12,6 +12,7 @@ const balanceSchema = require('./schema/balanceSchema')
 const depositSchema = require('./schema/depositSchema')
 const withdrawSchema = require('./schema/withdrawSchema')
 const botSchema = require('./schema/botSchema')
+const kycSchema = require('./schema/kycSchema')
 
 // const fetch = require('node-fetch')
 
@@ -156,6 +157,44 @@ app.post('/deposit', async (req,res)=>{
     }
   
   })
+
+app.post('/uploadKYC', async(req,res)=>{
+  // console.log(req)
+  const details = req.body
+  // console.log(details)
+  const {id,fullname,country,type,front,back} = details
+  const user = await userschema.findOne({_id: id})
+  upload()
+
+  async function upload(){
+    try{
+      const kyc = new kycSchema({
+        fullname: fullname,
+        country: country,
+        idtype: type,
+        front: front,
+        back: back,
+        status: 'Pending'
+      })
+
+      await kyc.save()
+
+      console.log(kyc._id)
+
+      userschema.findOneAndUpdate({_id:id}, {$set:{kyc: kyc._id}},{new: true}, (err)=>{
+        if(err){
+          console.log(err)
+        }})
+
+        const theuser = await userschema.findOne({_id:id}).populate('kyc')
+        console.log(theuser)
+      res.send('OK')
+     }catch(err){
+        console.log(err)
+    }
+  }
+
+})
 
 const port = process.env.PORT || 9000
 
