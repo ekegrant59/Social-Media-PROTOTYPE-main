@@ -50,7 +50,7 @@ app.use(function (req, res, next) {
 app.get('/', protectRoute, async function(req,res){ 
     try{
       const auser = req.user.user.email
-      const theuser = await userschema.findOne({email: auser})
+      const theuser = await userschema.findOne({email: auser}).populate('kyc')
       const theuser1 = await balanceSchema.findOne({email: auser})
       const deposits = await depositSchema.find({email: auser})
       const withdrawals = await withdrawSchema.find({email: auser})
