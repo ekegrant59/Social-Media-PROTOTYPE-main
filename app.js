@@ -116,6 +116,7 @@ app.post('/deposit', async (req,res)=>{
 
   app.post('/withdraw',async(req,res)=>{
     const details = req.body
+    console.log(details)
     const date = new Date().toLocaleDateString()
     const email = details.email
     const address = details.address
