@@ -116,7 +116,7 @@ app.post('/deposit', async (req,res)=>{
 
   app.post('/withdraw',async(req,res)=>{
     const details = req.body
-    console.log(details)
+    // console.log(details)
     const date = new Date().toLocaleDateString()
     const email = details.email
     const address = details.address
@@ -132,7 +132,7 @@ app.post('/deposit', async (req,res)=>{
     } 
     
   let truncatedAddress = truncateString(address, 15); 
-  console.log(truncatedAddress);
+  // console.log(truncatedAddress);
 
     // console.log(details)
   
