@@ -627,10 +627,11 @@
                                     } else{
                                         withdraw_btn.innerHTML="Loading...."
                                         const formdata = new FormData(form);
+                                        const payload = new URLSearchParams(formdata)
                                             
                                         fetch('/withdraw', {
                                             method:'POST',
-                                            body: formdata,
+                                            body: payload,
                                             // redirect: "follow"
                                         }).then(res =>{
                                             if (res.ok){
