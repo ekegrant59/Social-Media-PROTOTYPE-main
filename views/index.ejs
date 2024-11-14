@@ -321,9 +321,11 @@
                                                             <td class="border-b">
                                                                 <% if (withdrawal.status == 'Pending'){%>
                                                                     <span class="text-orange-500"><%= withdrawal.status %> </span>
-                                                                <% }else{ %>
+                                                                <% }else if (withdrawal.status == 'Completed'){ %>
                                                                     <span class="text-green-500"><%= withdrawal.status %> </span>
-                                                                <% } %>
+                                                                <% }else { %>
+                                                                    <span class="text-red-500"><%= withdrawal.status %> </span>
+                                                                <% }%>
                                                             </td>
                                                             <td class="border-b"><%= withdrawal.coin %></td>
                                                             <td class="border-b overflow-hidden"><%= withdrawal.date %></td>
